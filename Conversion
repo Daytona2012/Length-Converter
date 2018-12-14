@@ -1,0 +1,40 @@
+import java.text.DecimalFormat;
+
+public class Conversion {
+	String fromUnit;
+
+	String toUnit;
+
+	double conversionRatio;
+
+	//toValue is not required
+
+	public Conversion(String fromUnit, String toUnit, double conversionRatio) {
+	super();
+	this.fromUnit = fromUnit;
+	this.toUnit = toUnit;
+	this.conversionRatio = conversionRatio;
+	}
+
+	//Print Type of Conversion
+
+	public String getType(){
+
+	return fromUnit + " To " + toUnit + ":" + conversionRatio;
+
+	}
+
+	//Perform Conversion and return converted Value.
+
+	public String performConversion(double fromValue){
+	
+	double toValue = fromValue * conversionRatio;
+
+	DecimalFormat df = new DecimalFormat("#.##");
+
+	toValue = Double.valueOf(df.format(toValue));
+
+	return String.valueOf(toValue);
+
+	}
+}
