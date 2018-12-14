@@ -1,0 +1,134 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+
+    public class LengthConverterApp {
+      
+    	/*
+
+    	* Class displays menu for conversion
+
+    	*
+
+    	*/
+
+    	public static Conversion conversion = null ;
+
+    	public static void main(String[] args) {
+
+    	ArrayList<Conversion> conversionList = new ArrayList<Conversion>();
+    	conversionList.add(new Conversion("Miles", "Kilometers", 1.6093));
+    	conversionList.add(new Conversion("Kilometers ", "Miles", 0.6214));
+    	conversionList.add(new Conversion("Inches ", "Centimeters", 2.54));
+
+    	System.out.println("Welcome to the Length Converter \n");
+    	
+    	System.out.print("1 - Convert a length \n");
+    	System.out.print("2 - Add a type of conversion \n");
+    	System.out.print("3 - Delete a type of conversion \n");
+    	System.out.print("4 - Exit \n");
+    	System.out.println();
+
+    	System.out.println("Enter Menu number:");
+
+    	Scanner in = new Scanner(System.in);
+    	String menuSelected=in.nextLine();
+
+    	while(menuSelected!="4"){
+
+    	   if(menuSelected.equalsIgnoreCase("1")){
+
+    	    for (Conversion cType : conversionList) { //Loop through conversion List
+
+    	        System.out.println(conversionList.indexOf(cType) + " - " + cType.getType());
+
+    	    }
+
+    	         System.out.println("\nEnter conversion number:");
+    	         int selectConversion = in.nextInt();
+    	         System.out.println();
+    	         conversion = conversionList.get(selectConversion);
+
+    	         System.out.println("Enter " + conversion.fromUnit + ":");
+    	         double convertValue = in.nextDouble();
+
+    	         System.out.println(String.valueOf(convertValue) + " " +conversion.fromUnit + ": " + conversion.performConversion(convertValue) + " " + conversion.toUnit);
+    	         System.out.println();
+    	         
+    	         System.out.print("1 - Convert a length \n");
+    	         System.out.print("2 - Add a type of conversion \n");
+    	         System.out.print("3 - Delete a type of conversion \n");
+    	         System.out.print("4 - Exit \n");
+    	         System.out.println();
+    	         
+    	         System.out.print("Enter Menu number:");
+    	         
+
+    	         menuSelected=in.nextLine();
+
+    	    } else if(menuSelected.equalsIgnoreCase("2")){
+
+    	         System.out.print("Enter 'From' unit: ");
+    	         String fromUnit = in.nextLine();
+
+    	         System.out.print("Enter 'To' unit: ");
+    	         String toUnit = in.nextLine();
+
+    	         System.out.print("Enter the conversion ratio: ");
+    	         double ratio = in.nextDouble();
+
+    	         //Add to conversion List
+    	         conversionList.add(new Conversion(fromUnit, toUnit, ratio)); 
+
+    	         System.out.println("This entry has been saved.");
+    	         System.out.println();
+
+    	         System.out.print("1 - Convert a length \n");
+    	         System.out.print("2 - Add a type of conversion \n");
+    	         System.out.print("3 - Delete a type of conversion \n");
+    	         System.out.print("4 - Exit \n");
+    	         System.out.println();
+    	         
+    	         System.out.print("Enter Menu number:");
+
+    	         menuSelected=in.nextLine();
+
+    	    } else if(menuSelected.equalsIgnoreCase("3")){
+
+    	    	 //Loop through conversion List
+    	         for (Conversion cType : conversionList) { 
+
+    	         System.out.println(conversionList.indexOf(cType)+" - "+cType.getType());
+
+        	}
+
+    	         System.out.println("Enter conversion number to delete: ");
+    	         int selectConversion = in.nextInt();
+
+    	         //Remove from conversion List
+    	         conversionList.remove(selectConversion);
+
+    	         System.out.print("1 - Convert a length \n");
+    	         System.out.print("2 - Add a type of conversion \n");
+    	         System.out.print("3 - Delete a type of conversion \n");
+    	         System.out.print("4 - Exit \n");
+
+    	         System.out.println("Enter Menu number:");
+
+    	         menuSelected=in.nextLine();
+
+    	    } else if(menuSelected.equalsIgnoreCase("4")){
+
+    	    	 System.out.println("Goodbye.");
+    	         System.exit(1);
+
+    	    }
+
+    	         menuSelected=in.nextLine();
+
+    	}
+    	
+    	         in.close();
+    	
+    	}
+}
